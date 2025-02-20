@@ -1,10 +1,18 @@
 import { useState } from 'react'
 import './App.css'
 import { LoadingScreen } from './components/LoadingScreen'
+
+
 import "./index.css"
+import { Navbar } from './components/Navbar'
+import { MobileMenu } from './components/MobileMenu'
+import { Home } from './components/sections/hOME.JSX'
+import { About } from './components/sections/About'
+import { Projects } from './components/sections/Projects'
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
 
   
@@ -12,7 +20,12 @@ function App() {
   return (
     <>
       {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)}/>}{""}
-        <div>
+        <div className={`min-h-screen transition-opacity duration-700 bg-black text-gray-100 ${isLoaded ? "opcaitity-100" : "opacity-0"}`}>
+          <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <Home />
+          <About />
+          <Projects/>
 
         </div>
     </>

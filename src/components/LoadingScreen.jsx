@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
 
 export const LoadingScreen = ( {onComplete}) => {
 
