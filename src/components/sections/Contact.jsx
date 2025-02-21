@@ -1,8 +1,9 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { RevealonScroll } from "../RevealOnScroll";
 import emailjs from "emailjs-com";
 
 export const Contact = () => {
+    
   //create state that keeps track of the form data
   const [formData, setFormData] = useState({
     name: "",
@@ -15,8 +16,12 @@ export const Contact = () => {
     // 1.prevent website from reloading when you submit form
     e.preventDefault();
     //2.make call to emailjs
-    emailjs
-      .sendForm(
+
+    console.log("Service ID:", import.meta.env.VITE_SERVICE_ID);
+console.log("Template ID:", import.meta.env.VITE_TEMPLATE_ID);
+console.log("Public Key:", import.meta.env.VITE_PUBLIC_KEY);
+
+    emailjs.sendForm(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
         e.target,
@@ -24,7 +29,7 @@ export const Contact = () => {
       )
       .then((result) => {
         alert("MESSAGE SENT");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: ""});
       })
       .catch(() => {
         alert("Ooops. Something went wrong. Please try again.");
